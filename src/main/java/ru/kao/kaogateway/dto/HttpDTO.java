@@ -3,6 +3,17 @@ package ru.kao.kaogateway.dto;
 import java.util.Map;
 
 public class HttpDTO {
+    public HttpDTO(Map<String, String> headers, byte[] message) {
+        this.message = message;
+        this.headers = headers;
+    }
+
+    public HttpDTO(String path, Map<String, String> headers, byte[] message) {
+        this.path = path;
+        this.message = message;
+        this.headers = headers;
+    }
+
     /**
      * URL-path
      */
@@ -11,7 +22,7 @@ public class HttpDTO {
     /**
      * Message
      */
-    public Object message;
+    public byte[] message;
 
     /**
      * Static headers
