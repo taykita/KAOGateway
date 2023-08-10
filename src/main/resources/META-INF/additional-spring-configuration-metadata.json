@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "KAO.gateway.http.server.url",
+      "type": "java.lang.String",
+      "description": "URL for http integration."
+  }
+] }
