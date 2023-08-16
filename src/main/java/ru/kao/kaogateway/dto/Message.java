@@ -3,7 +3,7 @@ package ru.kao.kaogateway.dto;
 import java.util.Map;
 
 public class Message {
-    public Message(Map<String,String> headers, byte[] body) {
+    public Message(Map<String,String> headers, String body) {
         this.headers = headers;
         this.body = body;
     }
@@ -11,7 +11,7 @@ public class Message {
     /**
      * Message body
      */
-    public byte[] body;
+    public String body;
 
     /**
      * Static headers

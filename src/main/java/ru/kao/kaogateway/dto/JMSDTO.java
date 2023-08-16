@@ -1,4 +1,6 @@
 package ru.kao.kaogateway.dto;
 
-public class JMSDTO {
+import java.io.Serializable;
+
+public class JMSDTO implements Serializable {
 }

@@ -35,8 +35,9 @@ public class MessagingController {
      * DTO example:
      *   <pre>{@code
      *      {
-     *          "path" : "/foo/bar",
-     *          "message" : "Hello, World!",
+     *          "path" : "/foo/bar", (HTTP path)
+     *          "message" : "Hello, World!", (Request Body) (JSON)
+     *          "method" : "POST" (GET, POST, DELETE, PUT, PATCH)
      *          "headers" : {
      *              "header1" : "value1",
      *              "header2" : "value2",

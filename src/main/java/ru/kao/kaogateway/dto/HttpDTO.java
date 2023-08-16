@@ -1,15 +1,15 @@
 package ru.kao.kaogateway.dto;
 
+import ru.kao.kaogateway.transport.http.HttpMethod;
+
+import java.io.Serializable;
 import java.util.Map;
 
-public class HttpDTO {
-    public HttpDTO(Map<String, String> headers, byte[] message) {
-        this.message = message;
-        this.headers = headers;
+public class HttpDTO implements Serializable {
+    public HttpDTO() {
     }
 
-    public HttpDTO(String path, Map<String, String> headers, byte[] message) {
-        this.path = path;
+    public HttpDTO(Map<String, String> headers, String message) {
         this.message = message;
         this.headers = headers;
     }
@@ -22,7 +22,12 @@ public class HttpDTO {
     /**
      * Message
      */
-    public byte[] message;
+    public String message;
+
+    /**
+     * HTTP method
+     */
+    public HttpMethod method;
 
     /**
      * Static headers

@@ -1,4 +1,6 @@
 package ru.kao.kaogateway.dto;
 
-public class KafkaDTO {
+import java.io.Serializable;
+
+public class KafkaDTO implements Serializable {
 }
