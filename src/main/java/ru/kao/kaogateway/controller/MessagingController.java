@@ -1,6 +1,8 @@
 package ru.kao.kaogateway.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,12 +46,12 @@ public class MessagingController {
      *          }
      *      }
      *   }</pre>
-     * @return httpDTO <br> <br>
+     * @return JSON
      * @throws TransportException if problem with sending http message
 
      */
-    @PostMapping("http")
-    public HttpDTO httpSend(@RequestBody HttpDTO httpDTO) throws TransportException {
-        return messagingService.httpSend(httpDTO);
+    @PostMapping(value = "http", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String httpSend(@RequestBody HttpDTO httpDTO) throws TransportException {
+        return messagingService.httpSend(httpDTO).toString();
     }
 }
