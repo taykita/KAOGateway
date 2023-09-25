@@ -9,10 +9,20 @@ public class HttpMessage extends Message {
         super(headers, body);
     }
 
-    public HttpMessage(Map<String, String> headers,String body, HttpMethod httpMethod) {
+    public HttpMessage(Map<String, String> headers, String body, HttpMethod httpMethod) {
         super(headers, body);
         this.httpMethod = httpMethod;
     }
 
     public HttpMethod httpMethod;
+
+    @Override
+    public String toString() {
+        return "HttpMessage{" +
+                "httpMethod=" + httpMethod +
+                ", body='" + body + '\'' +
+                ", headers=" + headers +
+                ", UUID='" + UUID + '\'' +
+                '}';
+    }
 }

@@ -26,13 +26,10 @@ import ru.kao.kaogateway.util.LoggerUtil;
 import java.io.IOException;
 import java.util.Arrays;
 
-@Component
 public class HttpTransport implements Transport {
     private final Logger logger = LoggerUtil.getLogger(HttpTransport.class);
 
-    @Autowired
-    public HttpTransport(@Value("${ru.kao.gateway.http.server.url}") String serverUrl,
-                         HttpClient httpClient) {
+    public HttpTransport(String serverUrl, HttpClient httpClient) {
         this.SERVER_URL = serverUrl;
         this.httpClient = httpClient;
     }
@@ -43,6 +40,7 @@ public class HttpTransport implements Transport {
     @Override
     public Message send(Message message, String destination) throws HttpException {
         if (message instanceof HttpMessage requestMessage) {
+            logger.debug("{}: Start of sending message. \nMessage - {}", message.UUID, message);
             try {
                 HttpResponse response;
                 final String uri = SERVER_URL + destination;
@@ -55,11 +53,12 @@ public class HttpTransport implements Transport {
                     default -> throw new IllegalArgumentException("Expected + " + Arrays.toString(HttpMethod.values()) +
                             ", but found - " + requestMessage.httpMethod);
                 }
+                logger.debug("{}: Sending message was successful.", message.UUID);
                 return new Message(
                         HeadersUtil.toNativeHeaders(response.getAllHeaders()),
                         new String(response.getEntity().getContent().readAllBytes()));
             } catch (IOException e) {
-                logger.error("Http message sending error", e);
+                logger.error(message.UUID + ": Http message sending error", e);
                 throw new HttpException(e);
             }
         }
@@ -67,12 +66,14 @@ public class HttpTransport implements Transport {
     }
 
     private HttpResponse executeNotEnclosingRequest(HttpMessage requestMessage, String destination, HttpRequestBase request) throws IOException {
+        logger.debug("{}: Executing request without body", requestMessage.UUID);
         if (requestMessage.headers != null)
             request.setHeaders(HeadersUtil.toApacheHttpHeaders(requestMessage.headers));
         return httpClient.execute(request);
     }
 
     private HttpResponse executeEnclosingRequest(HttpMessage requestMessage, String destination, HttpEntityEnclosingRequestBase request) throws IOException {
+        logger.debug("{}: Executing request with body", requestMessage.UUID);
         request.setEntity(new StringEntity(requestMessage.body, ContentType.APPLICATION_JSON));
         if (requestMessage.headers != null)
             request.setHeaders(HeadersUtil.toApacheHttpHeaders(requestMessage.headers));

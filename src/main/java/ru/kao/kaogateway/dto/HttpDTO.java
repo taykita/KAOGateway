@@ -6,31 +6,55 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class HttpDTO implements Serializable {
-    public HttpDTO() {
-    }
-
-    public HttpDTO(Map<String, String> headers, String message) {
-        this.message = message;
-        this.headers = headers;
-    }
-
     /**
      * URL-path
      */
-    public String path;
+    private String path;
 
     /**
      * Message
      */
-    public String message;
+    private String message;
 
     /**
      * HTTP method
      */
-    public HttpMethod method;
+    private HttpMethod method;
 
     /**
      * Static headers
      */
-    public Map<String, String> headers;
+    private Map<String, String> headers;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public HttpMethod getMethod() {
+        return method;
+    }
+
+    public void setMethod(HttpMethod method) {
+        this.method = method;
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(Map<String, String> headers) {
+        this.headers = headers;
+    }
 }

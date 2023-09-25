@@ -6,6 +6,7 @@ public class Message {
     public Message(Map<String,String> headers, String body) {
         this.headers = headers;
         this.body = body;
+        UUID = headers.get("UUID");
     }
 
     /**
@@ -17,4 +18,18 @@ public class Message {
      * Static headers
      */
     public Map<String, String> headers;
+
+    /**
+     * UUID
+     */
+    public String UUID;
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "body='" + body + '\'' +
+                ", headers=" + headers +
+                ", UUID='" + UUID + '\'' +
+                '}';
+    }
 }
