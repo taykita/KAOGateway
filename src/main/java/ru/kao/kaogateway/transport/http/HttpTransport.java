@@ -9,13 +9,9 @@ import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import ru.kao.kaogateway.dto.HttpMessage;
 import ru.kao.kaogateway.dto.Message;
 import ru.kao.kaogateway.exception.HttpException;
@@ -63,6 +59,11 @@ public class HttpTransport implements Transport {
             }
         }
         throw new IllegalArgumentException("Expected HttpMessage");
+    }
+
+    @Override
+    public void subscribe(Runnable callback, String destination) {
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     private HttpResponse executeNotEnclosingRequest(HttpMessage requestMessage, String destination, HttpRequestBase request) throws IOException {

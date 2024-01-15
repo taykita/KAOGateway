@@ -31,6 +31,23 @@ public class MessagingController {
         throw new UnsupportedOperationException("This operation will be added soon");
     }
 
+    /**
+     * Send kafka message
+     * @param kafkaDTO DTO <br> <br>
+     * DTO example:
+     *   <pre>{@code
+     *      {
+     *          "topic" : "foo_bar",
+     *          "message" : "Hello, World!", (Request Body) (JSON)
+     *          "headers" : {
+     *              "header1" : "value1",
+     *              "header2" : "value2",
+     *          }
+     *      }
+     *   }</pre>
+     * @return JSON
+     * @throws TransportException if problem with sending http message
+     */
     @PostMapping("kafka")
     public KafkaDTO kafkaSend(@RequestBody KafkaDTO kafkaDTO) {
         throw new UnsupportedOperationException("This operation will be added soon");
@@ -53,7 +70,6 @@ public class MessagingController {
      *   }</pre>
      * @return JSON
      * @throws TransportException if problem with sending http message
-
      */
     @PostMapping(value = "http-to-server", produces = MediaType.APPLICATION_JSON_VALUE)
     public String httpSend(@RequestBody HttpDTO httpDTO) throws TransportException {

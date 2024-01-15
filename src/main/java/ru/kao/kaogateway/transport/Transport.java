@@ -6,4 +6,6 @@ import ru.kao.kaogateway.exception.TransportException;
 
 public interface Transport {
     Object send(Message msg, String destination) throws TransportException;
+
+    void subscribe(Runnable callback, String destination);
 }
